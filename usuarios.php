@@ -75,6 +75,7 @@ class usuarios extends Crud{
 		$stmt->bindParam(':senha', $this->senha);
 		$stmt->execute();
 		$dados = $stmt->fetchAll();
+		session_start();
 		$_SESSION["dados"] = $dados;
 		return $dados;
 	}

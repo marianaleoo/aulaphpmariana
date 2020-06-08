@@ -3,17 +3,21 @@
             if(isset($_POST['f_mail']) and isset($_POST['f_senha'])){
                 $myuser->setEmail($_POST['f_mail']);
                 $myuser->setSenha($_POST['f_senha']);
-                $resultado = $myuser->autenticacao();
-                if($resultado > 0){
-                    Header("Location:cadastro.php");
+                $myuser->autenticacao();
+                $sessionData = $_SESSION["dados"][0];
+                if($sessionData->id !== null){
+                    if($myuser->getSenha() == "123456"){
+                       Header("Location:forcarTrocaSenha.php");
+                    }else{
+                        Header("Location:cadastro.php");
+                    }
+                   
                 } else {
                     exibe_pagina('Login ou senha incorreto.');
                 }
             } else {
                 exibe_pagina('');
             }
-
- 
 
     function exibe_pagina($mensagem){
         echo "<html>";
