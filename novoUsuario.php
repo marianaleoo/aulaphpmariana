@@ -3,9 +3,6 @@
 ?>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/style.css">   
     <title>Cadastro</title>
 </head>
 <body>
@@ -36,7 +33,6 @@
 			}
 		?>
 		<div>
-			<table border=1>
 				<tr>
 					<th>Nome</th>
 					<th>Email</th>
@@ -49,7 +45,6 @@
 					<td><?php echo "$value->email"; ?></td>
 				</tr>
 				<?php endforeach; ?>
-			</table>
 		</div>		
 		</b>
 </body>

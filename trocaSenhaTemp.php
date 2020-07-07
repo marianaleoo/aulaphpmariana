@@ -1,12 +1,9 @@
 <?php
-    include "../scripts/usuarios.php";
+    include "D:\FATEC\PHP\arquivos\usuarios.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/style.css">
     <title>Recuperar</title>
 </head>
 <body>
@@ -18,7 +15,7 @@
             <button>Salvar</button>
             <br/>
             <span>Criar uma nova conta:</span>
-            <a href="../views/novoUsuario.php" id="criarConta">Cadastrar*</a>
+            <a href="D:\FATEC\PHP\arquivos\novoUsuario.php" id="criarConta">Cadastrar*</a>
             <br/><br/>
             <!--<a href="../index.php">Retornar ao Login</a> -->
         </form>
@@ -31,7 +28,7 @@
 		    $myuser->setNome($_SESSION["dados"][0]->nome);
 		    $myuser->setEmail($_SESSION["dados"][0]->email);
             $myuser->update($myuser->getId());
-            Header("Location:../index.php");                      
+            Header("Location: D:\FATEC\PHP\arquivosindex.php");                      
         }
 	?>        
 </body>

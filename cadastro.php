@@ -94,7 +94,6 @@
 
 	<p></p>
 	<div>
-		<table border=1>
 		  <tr>
 			<th width="20%">Nome</th>
 			<th width="30%">Email</th>
@@ -126,7 +125,6 @@
 					</td>
 				</tr>
 			<?php endforeach;?>	
-		</table>
 	</div>
 		</b>
 	</body>

@@ -1,12 +1,18 @@
 <?php
-require_once 'Crud.php';
+require_once ($_SERVER['DOCUMENT_ROOT'] . 'login_DAO/DAO/Crud.php');
+session_start();
 
-class usuarios extends Crud{
+class usuarios extends Crud {
 	protected $table = 'usuarios';
 	private $id;
 	private $nome;
 	private $email;
 	private $senha;
+	private $perfil;
+
+	public function insert(){}
+	public function update(){}
+	public function autenticacao(){}
 	
 	public function getId(){
 		return $this->id;
@@ -23,6 +29,10 @@ class usuarios extends Crud{
 	public function getSenha(){
 		return $this->senha;
 	}
+
+	public function getPerfil(){
+		return $this->perfil;
+	}
 	
 	public function setId($id){
 		$this->id = $id;
@@ -36,49 +46,13 @@ class usuarios extends Crud{
 		$this->email = $email;
 	}
 	
+	public function setPerfil($perfil){
+		$this->perfil = $perfil;
+	}
+
 	public function setSenha($senha){
-		$this->senha = $senha;
-	}
-	
-	public function insert(){
-		$sql  = "INSERT INTO $this->table (nome, email, senha) VALUES (:nome, :email, :senha)";
-		$stmt = DB::prepare($sql);
-		$stmt->bindParam(':nome', $this->nome);
-		$stmt->bindParam(':email', $this->email);
-		$stmt->bindParam(':senha', $this->senha);
-		return $stmt->execute(); 
-	}
-	
-	public function update($id){
-		$sql  = "UPDATE $this->table SET nome = :nome, email = :email, senha = :senha WHERE id = :id";
-		$stmt = DB::prepare($sql);
-		$stmt->bindParam(':nome', $this->nome);
-		$stmt->bindParam(':email', $this->email);
-		$stmt->bindParam(':senha', $this->senha);
-		$stmt->bindParam(':id', $id);
-		return $stmt->execute();	
-	}
-
-	public function alteraDados($id){
-		$sql  = "UPDATE $this->table SET nome = :nome, email = :email WHERE id = :id";
-		$stmt = DB::prepare($sql);
-		$stmt->bindParam(':nome', $this->nome);
-		$stmt->bindParam(':email', $this->email);		
-		$stmt->bindParam(':id', $id);
-		return $stmt->execute();	
-	}
-
-	public function autenticacao(){
-	    $sql  = "SELECT * FROM $this->table WHERE email = :email and senha = :senha";
-	    $stmt = DB::prepare($sql);
-		$stmt->bindParam(':email', $this->email);
-		$stmt->bindParam(':senha', $this->senha);
-		$stmt->execute();
-		$dados = $stmt->fetchAll();
-		session_start();
-		$_SESSION["dados"] = $dados;
-		return $dados;
-	}
-	
+		$this->senha = md5($senha);		
+	}		
 }
+
 ?>
